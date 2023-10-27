@@ -171,9 +171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects: {fileID: 838279756}
   ustCollider: {fileID: 1068995291}
-  informative: {fileID: 637265659}
   player: {fileID: 1068995282}
   mainCamera: {fileID: 963194227}
+  informativeGO: {fileID: 637265657}
 --- !u!1001 &58063196
 PrefabInstance:
   m_ObjectHideFlags: 0

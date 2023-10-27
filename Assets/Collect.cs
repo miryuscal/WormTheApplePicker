@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Collect : MonoBehaviour
 {
     
     public int toplamElma = 0; // Toplanan elma sayýsýný saklayacak deðiþken
     public Text elmaSayisiText; // UI üzerinde toplam elma sayýsýný gösterecek metin öðesi
-    
+    public TMP_Text informative;
+    public Camera mainCamera;
+    public GameObject player;
+
     private void Start()
     {
         GuncelleElmaSayisi();
+        informative.text = "+0.2 sec";
     }
+
 
     private void Update()
     {
@@ -30,13 +36,28 @@ public class Collect : MonoBehaviour
             Score.sayi++;
             // Burada toplamElma deðiþkeninin deðerini güncelliyoruz.
             GuncelleElmaSayisi();
-            
-            // gameObject nesnesini yok et
-            Destroy(gameObject);
 
+            
+            informative.transform.position = player.transform.position + new Vector3(0, 20, 0);
+            Vector3 position = informative.transform.position;
+            position = mainCamera.WorldToScreenPoint(position) + new Vector3(0, -1860, 0);
+            informative.transform.position = position;
+            StartCoroutine(ShowMessage());
+            gameObject.transform.position += new Vector3(0, 0, -9f);
         }
     }
 
+
+    private IEnumerator ShowMessage()
+    {
+        informative.gameObject.SetActive(true);
+
+
+        yield return new WaitForSecondsRealtime(1);
+
+        informative.gameObject.SetActive(false);
+        Debug.Log("Zaman gecti");
+    }
 
 
     public void GuncelleElmaSayisi()
