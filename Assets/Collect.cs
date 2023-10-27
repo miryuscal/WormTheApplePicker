@@ -9,11 +9,12 @@ public class Collect : MonoBehaviour
     public int toplamElma = 0; // Toplanan elma sayýsýný saklayacak deðiþken
     public Text elmaSayisiText; // UI üzerinde toplam elma sayýsýný gösterecek metin öðesi
     
-
-
-    
-
     private void Start()
+    {
+        GuncelleElmaSayisi();
+    }
+
+    private void Update()
     {
         GuncelleElmaSayisi();
     }

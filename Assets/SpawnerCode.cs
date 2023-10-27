@@ -23,8 +23,5 @@ public class SpawnerCode : MonoBehaviour
     
         
             
-
-          
-    
     
 }

@@ -8,12 +8,13 @@ public class Countdown : MonoBehaviour
 {
     public Text countdownText;
     public float initialCountdownTime = 30.0f; // Baþlangýç geri sayým süresi
-    private float countdownTime;
+    public float countdownTime;
     public int score = Score.sayi;
     public GameObject pauseMenuPanel;
     public Text scoreText;
     public GameObject firstSelected;
     public List<GameObject> buttons;
+    public Collider Example;
 
     void Start()
     {
@@ -22,10 +23,10 @@ public class Countdown : MonoBehaviour
         UpdateCountdownText();
     }
 
+
     void Update()
     {
-    
-        
+
         if (countdownTime > 0)
         {
             countdownTime -= Time.deltaTime;
@@ -47,7 +48,7 @@ public class Countdown : MonoBehaviour
         }
     }
 
-    void UpdateCountdownText()
+    public void UpdateCountdownText()
     {
         countdownText.text = ": " + Mathf.Ceil(countdownTime).ToString();
     }
@@ -64,4 +65,16 @@ public class Countdown : MonoBehaviour
     {
         Application.Quit();
     }
+    /*
+    public float GetTime()
+    {
+        return countdownTime;
+    }
+
+    public void SetTime(float temp)
+    {
+        countdownTime += temp;
+        UpdateCountdownText();
+    }
+    */
 }
