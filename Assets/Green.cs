@@ -11,7 +11,9 @@ public class Green : MonoBehaviour
     public TMP_Text informative;
     public GameObject player;
     public Camera mainCamera;
- 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     private void Start()
     {
         informative.text = "+1 sec";
@@ -25,6 +27,7 @@ public class Green : MonoBehaviour
  
         if (collision.collider == ustCollider && collision.gameObject.CompareTag("Player")) // Kurtun etiketini kullanabilirsiniz.
         {
+            audioSource.PlayOneShot(audioClip);
             informative.transform.position = player.transform.position + new Vector3(0, 20, 0);
             Vector3 position = informative.transform.position;
             position = mainCamera.WorldToScreenPoint(position) + new Vector3(0, -1860, 0);

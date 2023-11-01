@@ -19,9 +19,13 @@ public class Mover : MonoBehaviour
 
     // Worm'un yönünü deðiþtirmek için bir deðiþken oluþtur
     bool isTurned = false;
+    public Rigidbody wormRigidBody;
+    Vector3 eulerAngles;
 
     void Start()
     {
+        eulerAngles = wormRigidBody.transform.rotation.eulerAngles;
+
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Movement");
 
@@ -30,11 +34,14 @@ public class Mover : MonoBehaviour
 
         // Worm'un mevcut yönünü kaydet
         currentDirection = moveAction.ReadValue<Vector2>();
+        wormRigidBody.centerOfMass = worm.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        eulerAngles.z = 0;
+        worm.transform.position = new Vector3(worm.transform.position.x, -3.78f, 0);
         // Worm hareket ediyorsa
         if (moveAction.ReadValue<Vector2>().magnitude > 0)
         {
@@ -51,7 +58,7 @@ public class Mover : MonoBehaviour
     {
         Vector2 direction = moveAction.ReadValue<Vector2>();
         worm.transform.position = new Vector3(worm.transform.position.x, -3.78f, 0);
-        transform.position += new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
+        transform.position += new Vector3(direction.x, 0, 0) * speed * Time.deltaTime;
 
         // Worm'un animasyonunu oynat
         animator.SetBool("isMoving", true);

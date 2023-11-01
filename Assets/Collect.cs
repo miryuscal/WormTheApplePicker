@@ -12,6 +12,8 @@ public class Collect : MonoBehaviour
     public TMP_Text informative;
     public Camera mainCamera;
     public GameObject player;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Collect : MonoBehaviour
 
         if (collision.collider == ustCollider && collision.gameObject.CompareTag("Player")) // Kurtun etiketini kullanabilirsiniz.
         {
-
+            audioSource.PlayOneShot(audioClip);
             Score.sayi++;
             // Burada toplamElma deðiþkeninin deðerini güncelliyoruz.
             GuncelleElmaSayisi();
