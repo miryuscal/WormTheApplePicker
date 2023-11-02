@@ -8,6 +8,8 @@ public class Mover : MonoBehaviour
     PlayerInput playerInput;
     InputAction moveAction;
     public GameObject worm;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     public float speed = 5;
 
@@ -24,6 +26,8 @@ public class Mover : MonoBehaviour
 
     void Start()
     {
+        audioSource.PlayOneShot(audioClip);
+        Application.targetFrameRate = 60;
         eulerAngles = wormRigidBody.transform.rotation.eulerAngles;
 
         playerInput = GetComponent<PlayerInput>();

@@ -30,7 +30,7 @@ public class Green : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
             informative.transform.position = player.transform.position + new Vector3(0, 20, 0);
             Vector3 position = informative.transform.position;
-            position = mainCamera.WorldToScreenPoint(position) + new Vector3(0, -1860, 0);
+            position = mainCamera.WorldToScreenPoint(position) + new Vector3(0, -1960, 0);
             informative.transform.position = position;
             StartCoroutine(ShowMessage());
             Score.sayi++;
