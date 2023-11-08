@@ -16,4 +16,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Market()
+    {
+        SceneManager.LoadSceneAsync(2);
+    }
+
 }
