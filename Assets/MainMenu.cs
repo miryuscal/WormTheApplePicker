@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     public void Market()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(2);
     }
 

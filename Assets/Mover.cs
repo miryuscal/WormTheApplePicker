@@ -11,7 +11,8 @@ public class Mover : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
 
-    public float speed = 5;
+
+    public static float speed = 5;
 
     // Animator component'i ekle
     public Animator animator;

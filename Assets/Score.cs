@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-
-    public static int sayi;
+    [SerializeField] public static int totalApples;
+    [SerializeField] public static int sayi;
     // Start is called before the first frame update
     void Start()
     {
-        
+        totalApples = PlayerPrefs.GetInt("totalApples");
     }
 
     // Update is called once per frame

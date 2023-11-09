@@ -15,9 +15,11 @@ public class Countdown : MonoBehaviour
     public GameObject firstSelected;
     public List<GameObject> buttons;
     public Collider Example;
-
+    Scene scene;
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
+        PlayerPrefs.SetInt("totalApples", Score.totalApples);
         Time.timeScale = 1f;
         countdownTime = initialCountdownTime;
         UpdateCountdownText();
@@ -26,8 +28,9 @@ public class Countdown : MonoBehaviour
 
     void Update()
     {
+        PlayerPrefs.SetInt("totalApples", Score.totalApples);
 
-        if (countdownTime > 0)
+        if (countdownTime > 0 && scene.name == "Level")
         {
             countdownTime -= Time.deltaTime;
             UpdateCountdownText();
@@ -45,6 +48,7 @@ public class Countdown : MonoBehaviour
             Time.timeScale = 0f; // Oyunu durdur
             pauseMenuPanel.SetActive(true);
             scoreText.text = "=  " + score.ToString();
+            PlayerPrefs.Save();
         }
     }
 
@@ -57,13 +61,20 @@ public class Countdown : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f; // Zamaný tekrar baþlat
-        Score.sayi = 0;
         SceneManager.LoadScene(1);
+        Score.sayi = 0;
     }
 
     public void QuitGame()
     {
         Application.Quit();
+
+    }
+
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("totalApples", Score.totalApples);
+        PlayerPrefs.Save();
     }
     /*
     public float GetTime()

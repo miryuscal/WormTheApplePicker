@@ -34,6 +34,7 @@ public class Green : MonoBehaviour
             informative.transform.position = position;
             StartCoroutine(ShowMessage());
             Score.sayi++;
+            Score.totalApples++;
             objects.GetComponent<Countdown>().countdownTime += 1;
             gameObject.transform.position += new Vector3(0, 0, -9f); 
         }

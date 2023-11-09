@@ -9,14 +9,17 @@ public class Collect : MonoBehaviour
     
     public int toplamElma = 0; // Toplanan elma sayýsýný saklayacak deðiþken
     public Text elmaSayisiText; // UI üzerinde toplam elma sayýsýný gösterecek metin öðesi
+    public Text elmaToplamSayisiText;
     public TMP_Text informative;
     public Camera mainCamera;
     public GameObject player;
     public AudioSource audioSource;
+    int totalApples;
     public AudioClip audioClip;
 
     private void Start()
     {
+        totalApples = PlayerPrefs.GetInt("totalApples");
         GuncelleElmaSayisi();
         informative.text = "+0.2 sec";
     }
@@ -25,6 +28,7 @@ public class Collect : MonoBehaviour
     private void Update()
     {
         GuncelleElmaSayisi();
+        GuncelleToplamElmaSayisi();
     }
 
 
@@ -36,10 +40,9 @@ public class Collect : MonoBehaviour
         {
             audioSource.PlayOneShot(audioClip);
             Score.sayi++;
+            Score.totalApples++;
             // Burada toplamElma deðiþkeninin deðerini güncelliyoruz.
             GuncelleElmaSayisi();
-
-            
             informative.transform.position = player.transform.position + new Vector3(0, 20, 0);
             Vector3 position = informative.transform.position;
             position = mainCamera.WorldToScreenPoint(position) + new Vector3(0, -1960, 0);
@@ -65,6 +68,11 @@ public class Collect : MonoBehaviour
     public void GuncelleElmaSayisi()
     {
         elmaSayisiText.text = ": " + Score.sayi.ToString();
+    }
+
+    public void GuncelleToplamElmaSayisi()
+    {
+        elmaToplamSayisiText.text = ": " + totalApples.ToString();
     }
 
 
